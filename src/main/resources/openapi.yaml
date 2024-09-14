@@ -1,0 +1,11 @@
+openapi: 3.0.0
+info:
+  title: Hollywood database
+  description: This app is for demo to Galin and Kiru
+  version: 1.0.0
+
+paths:
+  /person:
+    get:
+      tags:
+        -
