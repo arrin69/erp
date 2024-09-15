@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 //@SpringBootTest(properties = )
-class ErpApplicationTests {
+class MovieHouseApplicationTests {
 
 	@Test
 	void contextLoads() {
