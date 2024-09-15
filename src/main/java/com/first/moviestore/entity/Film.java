@@ -1,4 +1,4 @@
-package com.first.erp.erp.entity;
+package com.first.moviestore.entity;
 
 
 import jakarta.persistence.*;

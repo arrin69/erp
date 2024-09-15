@@ -1,9 +1,9 @@
-package com.first.erp.erp.api;
+package com.first.moviestore.api;
 
 
-import com.first.erp.erp.entity.Actor;
-import com.first.erp.erp.entity.Film;
-import com.first.erp.erp.service.Hollywood;
+import com.first.moviestore.entity.Actor;
+import com.first.moviestore.entity.Film;
+import com.first.moviestore.service.Hollywood;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping(path = "/moviehouse")
@@ -27,7 +27,7 @@ public class FamilyController {
         this.hollywood = hollywood;
     }
 
-    @PutMapping(consumes = APPLICATION_JSON, produces = APPLICATION_JSON, path = "/person")
+    @PutMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE, path = "/person")
     public HttpStatusCode createActor(@RequestBody Actor person) {
         Optional<Actor> personOptional = hollywood.createActor(person);
         if (personOptional.isPresent()) {
@@ -37,7 +37,7 @@ public class FamilyController {
         }
     }
 
-    @GetMapping(produces = APPLICATION_JSON, path = "/actor/{firstname}")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, path = "/actor/{firstname}")
     public List<Actor> findActor(@PathVariable String firstname) {
         log.info("Looking for actor with firstName {}", firstname);
         Optional<List<Actor>> personWithName = hollywood.findPersonWithName(firstname);
@@ -45,7 +45,7 @@ public class FamilyController {
     }
 
 
-    @GetMapping(produces = APPLICATION_JSON, path = "/film/{filmId}")
+    @GetMapping(produces = APPLICATION_JSON_VALUE, path = "/film/{filmId}")
     public ResponseEntity<Film> findFilm(@PathVariable Short filmId) {
         log.info("Looking for film with filmId {}", filmId);
         Optional<Film> filmByFilmId = hollywood.findFilmByFilmId(filmId);
@@ -58,7 +58,7 @@ public class FamilyController {
         }
     }
 
-    @PostMapping(produces = APPLICATION_JSON, consumes = APPLICATION_JSON, path = "/actor")
+    @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE, path = "/actor")
     public ResponseEntity<Actor> addNewActor(@RequestBody Actor actor) {
         log.info("Adding new actor {}", actor);
         Optional<Actor> actor1 = hollywood.createActor(actor);

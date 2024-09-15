@@ -1,4 +1,4 @@
-package com.first.erp.erp;
+package com.first.moviestore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

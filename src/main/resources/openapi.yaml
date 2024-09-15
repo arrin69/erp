@@ -1,11 +1,226 @@
-openapi: 3.0.0
+openapi: 3.0.3
 info:
-  title: Hollywood database
-  description: This app is for demo to Galin and Kiru
-  version: 1.0.0
-
+  title: Hollywood movies
+  description: |-
+    this is a sample project to educate about the usage of open api specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: abc@per.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://localhost:8080/moviecentral
+tags:
+  - name: actor
+    description: Everything about your favourite actor
+  - name: film
+    description: find your favourite film
 paths:
-  /person:
+  /actor:
+    put:
+      tags:
+        - actor
+      summary: Update an existing actor
+      description: Update an existing actor
+      operationId: updateActor
+      requestBody:
+        description: Update an existent actor in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Actor'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Actor'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '422':
+          description: Validation exception
+    post:
+      tags:
+        - actor
+      summary: Add a new actor to the store
+      description: Add a new actor to the store
+      operationId: addNewActor
+      requestBody:
+        description: Create a new actor in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Actor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Actor'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Actor'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+
+
+  /actor/{firstname}:
     get:
       tags:
-        -
+        - actor
+      summary: Find actor by firstname
+      description: Returns a list of actors
+      operationId: findActorByFirstName
+      parameters:
+        - name: firstname
+          in: path
+          description: ID of pet to return
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Actor'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Actor'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Actor not found
+
+  /film/{filmId}:
+    get:
+      tags:
+        - film
+      summary: Find film by ID
+      description: For valid response try integer IDs with value <= 5 or > 200. Other values will generate exceptions.
+      operationId: findFilmById
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of order that needs to be fetched
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Film not found
+
+components:
+  schemas:
+    Actor:
+      type: object
+      properties:
+        actorid:
+          type: integer
+          format: int64
+          example: 10
+        firstName:
+          type: string
+          example: John
+        lastname:
+          type: string
+          example: Sharma
+        lastUpdate:
+          type: string
+          format: date-time
+    Film:
+      type: object
+      properties:
+        film_Id:
+          type: integer
+          format: int64
+          example: 100000
+        description:
+          type: string
+          example: small desciption about film
+        language_id:
+          type: integer
+          format: int64
+          example: 124
+        last_update:
+          type: string
+          format: date-time
+        length:
+          type: integer
+          format: int64
+          example: 10000
+        original_language_id:
+          type: integer
+          format: int64
+          example: 100000
+        rental_duration:
+          type: integer
+          format: int64
+          example: 100000
+        rental_rate:
+          type: number
+          format: float
+        replacement_cost:
+          type: number
+          format: int64
+        title:
+          type: string
+          example: Titanic
+        rating:
+          type: string
+          description: rating of a film
+          enum:
+            - G
+            - PG
+            - PG-13
+            - R
+            - NC-17
+        special_features:
+          type: string
+          description: trailer or information available for a film
+          enum:
+            - Trailer
+            - Commentaries
+            - Deleted Scenes
+            - Behind the Scenes

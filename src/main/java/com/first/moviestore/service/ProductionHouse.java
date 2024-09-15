@@ -1,7 +1,7 @@
-package com.first.erp.erp.service;
+package com.first.moviestore.service;
 
-import com.first.erp.erp.entity.Actor;
-import com.first.erp.erp.entity.Film;
+import com.first.moviestore.entity.Actor;
+import com.first.moviestore.entity.Film;
 
 import java.util.List;
 import java.util.Optional;

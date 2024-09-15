@@ -1,9 +1,9 @@
-package com.first.erp.erp.service;
+package com.first.moviestore.service;
 
-import com.first.erp.erp.entity.Actor;
-import com.first.erp.erp.entity.Film;
-import com.first.erp.erp.repository.ActorRepository;
-import com.first.erp.erp.repository.FilmRepository;
+import com.first.moviestore.entity.Actor;
+import com.first.moviestore.entity.Film;
+import com.first.moviestore.repository.ActorRepository;
+import com.first.moviestore.repository.FilmRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
